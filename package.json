@@ -1,0 +1,23 @@
+{
+  "name": "cse-341-project-1-contacts",
+  "version": "1.0.0",
+  "description": "CSE 340 Project 1",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mfloresy/cse-341-project-1-contacts.git"
+  },
+  "author": "Manuel Flores",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mfloresy/cse-341-project-1-contacts/issues"
+  },
+  "homepage": "https://github.com/mfloresy/cse-341-project-1-contacts#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

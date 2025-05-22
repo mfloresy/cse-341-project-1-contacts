@@ -2,6 +2,7 @@ const mongodb = require("../database/connect")
 const objectId = require("mongodb").ObjectId
 
 const getAll = async (req, res) => {
+    //#swagger.tags=['Contacts']
     const result = await mongodb.getDatabase().db().collection("contacts").find();
     result.toArray().then((contacts)=>{
         res.setHeader('Content-Type', 'application/json')
@@ -9,8 +10,8 @@ const getAll = async (req, res) => {
     })
 }
 
-
 const getOne = async (req, res) => {
+    //#swagger.tags=['Contacts']
     const userId = new objectId(req.params.id)
     const result = await mongodb.getDatabase().db().collection("contacts").find({_id: userId});
     result.toArray().then((contacts)=>{
@@ -20,6 +21,7 @@ const getOne = async (req, res) => {
 }
 
 const createContact = async (req, res) => {
+    //#swagger.tags=['Contacts']
     const contact = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -36,6 +38,7 @@ const createContact = async (req, res) => {
 }
 
 const putContact = async (req, res) => {
+    //#swagger.tags=['Contacts']
     const contact = {
             firstName: req.body.firstName,
             lastName: req.body.lastName,
@@ -47,16 +50,17 @@ const putContact = async (req, res) => {
     if (result.modifiedCount > 0){
         res.status(204).send();
     }else{
-        res.status(500).json(result.error || 'Error saving contact to Database.');
+        res.status(500).json(result.error || 'Error updating contact to Database.');
     }
 }
 
 const deleteContact = async (req, res) => {
+    //#swagger.tags=['Contacts']
     const result = await mongodb.getDatabase().db().collection("contacts").deleteOne({_id: new objectId(req.params.id)}, true);
-    if (result.modifiedCount > 0){
+    if (result.acknowledged){
         res.status(204).send();
     }else{
-        res.status(500).json(result.error || 'Error saving contact to Database.');
+        res.status(500).json(result.error || 'Error deleting contact from Database.');
     }
 }
 
